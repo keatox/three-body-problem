@@ -1,1 +1,3 @@
-# three-body-problem
+# Three Body Problem
+
+## Quickstart
