@@ -1,3 +1,4 @@
+#pragma once
 #ifndef THREE_BODY_PROBLEM_VECTOR3D
 #define THREE_BODY_PROBLEM_VECTOR3D
 
