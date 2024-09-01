@@ -14,3 +14,18 @@ void Vector::normalize(){
     x /= mag;
     y /= mag;
 }
+
+Vector Vector::operator-(Vector rhs){
+    Vector v(x - rhs.x, y - rhs.y);
+    return v;
+}
+
+Vector Vector::operator*(double mult){
+    Vector v(x * mult, y * mult);
+    return v;
+}
+
+Vector Vector::operator/(float q){
+    Vector v(x/q, y/q);
+    return v;
+}

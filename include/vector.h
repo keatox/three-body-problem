@@ -6,11 +6,15 @@
 #include <cmath>
 
 class Vector{
-    float x, y;
+    public:
+        float x, y;
 
-    Vector(float x, float y);
-    float magnitude();
-    void normalize();
+        Vector(float x, float y);
+        float magnitude();
+        void normalize();
+        Vector operator-(Vector rhs);
+        Vector operator*(double mult);
+        Vector operator/(float q);
 };
 
 #endif //THREE_BODY_PROBLEM_VECTOR
