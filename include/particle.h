@@ -4,16 +4,18 @@
 
 #include <iostream>
 #include <cmath>
+#include "vector.h"
 
-// Particle class definition
-class Particle {
+class Particle{
     public:
-        float mass;
-        float x, y, z; // Position
-        float vx, vy, vz; // Velocity
-        float ax, ay, az; // Acceleration
+        float m;      // mass
+        double x, y;   // position
+        double vx, vy; // velocity
+        double ax, ay; // acceleration
 
-        Particle(float m, float posX, float posY, float posZ, float velX, float velY, float velZ);
-    };
+        Particle(float mass, double posX, double posY, double velX, double velY);
+        void calculateAcceleration(Particle &p2, Particle &p3);
+        void updatePosition(float dt);
+};
 
 #endif //THREE_BODY_PROBLEM_PARTICLE
