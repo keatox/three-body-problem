@@ -1,2 +1,2 @@
 include/SDL2/** linguist-vendored
-lib/** linguist-vendored
+lib/cmake/SDL2/** linguist-vendored
