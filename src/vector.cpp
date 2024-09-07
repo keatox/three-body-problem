@@ -32,7 +32,8 @@ Vector Vector::operator*(double mult){
 
 // overload for division between vector and float
 Vector Vector::operator/(float q){
-    if (q != 0) {
+    double epsilon = 1e-1;
+    if (abs(q) > epsilon) {
         return Vector(x / q, y / q);
     }
     return Vector(0, 0); // handle division by zero
