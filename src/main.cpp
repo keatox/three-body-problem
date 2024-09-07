@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
     bool quit = false;
     SDL_Event e;
 
-    float scale = 1;
+    float scale = 200;
     const float zoomFactor = 1.1f; // Factor for zooming in and out
 
     // Main loop
