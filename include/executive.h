@@ -8,7 +8,10 @@
 class Executive{
     public:
 
-}
-
+        Executive(); // constructor
+        void updatePhysics();
+        void renderParticle();
+        void run();
+};
 
 #endif //THREE_BODY_PROBLEM_EXECUTIVE
