@@ -7,14 +7,14 @@
 
 class Vector{
     public:
-        float x, y;
+        float x, y;  // vector components
 
-        Vector(float x, float y);
-        float magnitude();
-        void normalize();
-        Vector operator-(Vector rhs);
-        Vector operator*(double mult);
-        Vector operator/(float q);
+        Vector(float x, float y);      // constructor
+        float magnitude();             // calculates magnitude of vector
+        void normalize();              // normalizes vector
+        Vector operator-(Vector rhs);  // operator overload for subtraction
+        Vector operator*(double mult); // operator overload for multiplication
+        Vector operator/(float q);     // operator overload for division
 };
 
 #endif //THREE_BODY_PROBLEM_VECTOR
