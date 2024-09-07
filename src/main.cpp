@@ -56,30 +56,18 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Scale factor for visualization
-    float scale = 1; // Adjusted scale for visibility
-    // Initial positions and velocities for figure-eight pattern
-
-    float Ax = 0.97000436;
-    float Ay = -0.24308753;
-    float Bx = -0.97000436;
-    float By = 0.24308753;
-    float Vx = 0.93240737 / 2;
-    float Vy = 0.86473146 / 2;
-
-    // Adjust initial positions for SDL window center
-    float offsetX = WINDOW_WIDTH / 2;
-    float offsetY = WINDOW_HEIGHT / 2;
-
     // Create particles for the figure-eight pattern
-    Particle p1(1, Ax * scale + offsetX, Ay * scale + offsetY, Vx * scale, Vy * scale);
-    Particle p2(1, Bx * scale + offsetX, By * scale + offsetY, Vx * scale, Vy * scale);
-    Particle p3(1, offsetX, offsetY, -Vx * 2 * scale, -Vy * 2 * scale); // Opposite momentum for center mass
+    Particle p1(1, 700.97000436, 449.75691247, 0.93240737 / 2, 0.86473146 / 2);
+    Particle p2(1, 699.02999564, 450.24308753, 0.93240737 / 2 , 0.86473146 / 2);
+    Particle p3(1,700,450, -0.93240737, -0.86473146); // Opposite momentum for center mass
 
     float dt = 0.01; // Reduced time step for numerical stability
 
     bool quit = false;
     SDL_Event e;
+
+    float scale = 1;
+    const float zoomFactor = 1.1f; // Factor for zooming in and out
 
     // Main loop
     while (!quit) {
@@ -87,6 +75,13 @@ int main(int argc, char* argv[]) {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
                 quit = true;
+            } else if (e.type == SDL_MOUSEWHEEL) {
+                // Zoom in or out based on the mouse wheel
+                if (e.wheel.y > 0) { // Scroll up, zoom in
+                    scale *= zoomFactor;
+                } else if (e.wheel.y < 0) { // Scroll down, zoom out
+                    scale /= zoomFactor;
+                }
             }
         }
 
@@ -99,9 +94,9 @@ int main(int argc, char* argv[]) {
 
         // Draw particles
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        renderParticle(renderer, static_cast<int>(p1.x), WINDOW_HEIGHT - static_cast<int>(p1.y), static_cast<int>(pow(p1.m,0.25)));
-        renderParticle(renderer, static_cast<int>(p2.x), WINDOW_HEIGHT - static_cast<int>(p2.y), static_cast<int>(pow(p2.m,0.25)));
-        renderParticle(renderer, static_cast<int>(p3.x), WINDOW_HEIGHT - static_cast<int>(p3.y), static_cast<int>(pow(p3.m,0.25)));
+        renderParticle(renderer, static_cast<int>((p1.x - WINDOW_WIDTH/2) * scale + WINDOW_WIDTH/2), WINDOW_HEIGHT - static_cast<int>((p1.y - WINDOW_HEIGHT/2) * scale + WINDOW_HEIGHT/2), static_cast<int>(3));
+        renderParticle(renderer, static_cast<int>((p2.x - WINDOW_WIDTH/2) * scale + WINDOW_WIDTH/2), WINDOW_HEIGHT - static_cast<int>((p2.y - WINDOW_HEIGHT/2) * scale + WINDOW_HEIGHT/2), static_cast<int>(3));
+        renderParticle(renderer, static_cast<int>((p3.x - WINDOW_WIDTH/2) * scale + WINDOW_WIDTH/2), WINDOW_HEIGHT - static_cast<int>((p3.y - WINDOW_HEIGHT/2) * scale + WINDOW_HEIGHT/2), static_cast<int>(3));
 
         // Update screen
         SDL_RenderPresent(renderer);
